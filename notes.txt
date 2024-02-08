@@ -1,0 +1,24 @@
+Database Tables
+
+Users
+ID    FirstName     LastName      StreetAddress     State     City      Zipcode     Photo_Url
+
+
+Employees
+ID    FirstName     LastName      StreetAddress     State     City      Zipcode     Photo_Url
+
+
+
+
+Pets
+ID    Name     Photo_Url     AnimalType   Breed/Type  Age     Color   IndoorOnly    Gender    Spayed/Nuetered   OwnerID   SpecialNeeds   
+
+
+
+
+Events
+
+
+
+
+
