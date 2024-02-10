@@ -1,44 +1,39 @@
-import { Tabs } from "expo-router";
-// import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { MaterialIcons } from '@expo/vector-icons';
+import React from 'react';
+import { Link, Stack, Tabs } from 'expo-router';
+import { useColorScheme } from '@/components/useColorScheme';
 
-import { useClientOnlyValue } from "../../components/useClientOnlyValue";
-
-
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof MaterialIcons>['name'];
-  color: string;
-}) {
-  return <MaterialIcons size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
-export default function AuthLayout() {
+export default function PublicLayout() {
+  console.log('(public)_layout');
   
+
+  const colorScheme = useColorScheme();
   return (
-    <Tabs
+    <Stack 
+      initialRouteName='index'
       screenOptions={{
-        headerShown: useClientOnlyValue(false,true),
+        headerTitle: 'Pet Sitter',
+        headerTitleAlign: 'center',
       }}
-      >
-      <Tabs.Screen 
-        name="index" 
-        options={{ 
-          headerTitle: 'Dashboard',
-          tabBarIcon: ({ color }) => <TabBarIcon name="dashboard" color={color} />,
-          tabBarLabel: 'Dashboard'
-        }}
-        />
-      <Tabs.Screen 
-        name="Profile" 
-        options={{ 
-          headerTitle: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
-          tabBarLabel: 'Profile',
+    >
+      <Stack.Screen 
+        name='index'
+        options={{
+          // headerTitle: 'Pet Sitter',
+          // headerTitleAlign: 'center',
+          // headerBackVisible: false,
         }}
 
       />
-    </Tabs>
-  )
+      <Stack.Screen 
+        name='Register' 
+        options={{
+          headerBackTitle: 'Login',
+          headerBackTitleVisible: true,
+        }}
+      />
+      <Stack.Screen name='modal' options={{presentation: 'modal'}} />
+    </Stack>
+    
+  );
 }
+
