@@ -1,8 +1,11 @@
-import { Tabs, router } from "expo-router";
+import { Stack, Tabs, router } from "expo-router";
 // import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useClientOnlyValue } from "../../components/useClientOnlyValue";
+import MainHeader from "@/components/MainHeader";
 
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useColorScheme } from "@/components/useColorScheme";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -13,32 +16,24 @@ function TabBarIcon(props: {
 }
 
 export default function AuthLayout() {
-
-  
+  // const colorScheme = useColorScheme()  
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: useClientOnlyValue(false,true),
-      }}
+    <>
+    <MainHeader />
+      <Stack
+      screenOptions={{ headerShown: false}}
+        // screenOptions={() => {
+          //   return {
+            //     header: ( ) => <MainHeader />
+            //   }
+            // }}
       >
-      <Tabs.Screen 
-        name="index" 
-        options={{ 
-          headerTitle: 'Dashboard',
-          tabBarIcon: ({ color }) => <TabBarIcon name="dashboard" color={color} />,
-          tabBarLabel: 'Dashboard'
-        }}
-        />
-      <Tabs.Screen 
-        name="Profile" 
-        options={{ 
-          headerTitle: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
-          tabBarLabel: 'Profile',
-        }}
+        <Stack.Screen name="index" />
+        <Stack.Screen name="Profile" />
 
-      />
-    </Tabs>
+
+      </Stack>
+    </>
   )
 }
 
@@ -59,3 +54,26 @@ initialRouteName='index'
 > */}
 
 
+//     <Tabs
+// screenOptions={{
+//   headerShown: useClientOnlyValue(false,true),
+// }}
+// >
+// <Tabs.Screen 
+//   name="index" 
+//   options={{ 
+//     headerTitle: 'Dashboard',
+//     tabBarIcon: ({ color }) => <TabBarIcon name="dashboard" color={color} />,
+//     tabBarLabel: 'Dashboard'
+//   }}
+//   />
+// <Tabs.Screen 
+//   name="Profile" 
+//   options={{ 
+//     headerTitle: 'Profile',
+//     tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
+//     tabBarLabel: 'Profile',
+//   }}
+
+// />
+// </Tabs>
