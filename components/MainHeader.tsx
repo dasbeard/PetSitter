@@ -40,7 +40,7 @@ const MainHeader = () => {
         
         <View style={styles.right}>
           <View style={styles.linkContainer}>
-            <Link href={'/(auth)/Testing'} style={ null }  asChild>
+            <Link push href={'/(auth)/AddEventModal'} style={ null }  asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome 
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
   mainContianer: {
     // borderWidth:1,
     borderColor: 'red',
-    height: Platform.OS === 'web' ? 65 : Platform.OS === 'android' ? 175 : 50,
+    height: Platform.OS === 'web' ? 65 : Platform.OS === 'android' ? 50 : 50,
+    marginTop: Platform.OS === 'android' ? 45 : 0,
     flexDirection: 'row',
     alignContent: 'space-between',
     marginHorizontal: 6,

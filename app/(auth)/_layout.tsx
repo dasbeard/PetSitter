@@ -1,35 +1,29 @@
-import { Stack, Tabs, router } from "expo-router";
-// import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Stack } from "expo-router";
 import { MaterialIcons } from '@expo/vector-icons';
-import { useClientOnlyValue } from "../../components/useClientOnlyValue";
 import MainHeader from "@/components/MainHeader";
+import { Platform } from "react-native";
 
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useColorScheme } from "@/components/useColorScheme";
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof MaterialIcons>['name'];
-  color: string;
-}) {
-  return <MaterialIcons size={28} style={{ marginBottom: -3 }} {...props} />;
-}
 
 export default function AuthLayout() {
-  // const colorScheme = useColorScheme()  
+
   return (
     <>
     <MainHeader />
       <Stack
       screenOptions={{ headerShown: false}}
-        // screenOptions={() => {
-          //   return {
-            //     header: ( ) => <MainHeader />
-            //   }
-            // }}
       >
         <Stack.Screen name="index" />
-        <Stack.Screen name="Profile" />
+        <Stack.Screen name="Profile"/>
+        <Stack.Screen 
+          name="AddEventModal" 
+          options={{
+            presentation: 'modal', 
+            // headerShown: Platform.OS ==='web' ? false : true,
+            headerTitleAlign: 'center',
+            animation: 'fade_from_bottom',
+            animationTypeForReplace: 'push',
+          }} 
+        />
 
 
       </Stack>
