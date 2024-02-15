@@ -40,7 +40,7 @@ const MainHeader = () => {
         
         <View style={styles.right}>
           <View style={styles.linkContainer}>
-            <Link push href={'/(auth)/AddEventModal'} style={ null }  asChild>
+            <Link push href={'/(auth)/NewRequest'} style={ null }  asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome 
