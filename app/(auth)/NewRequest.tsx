@@ -3,32 +3,6 @@ import { FontAwesome5 as FontAwesome } from "@expo/vector-icons"
 import { useState } from "react"
 import { Pressable, StyleSheet } from "react-native"
 
-
-// const renderedItem = ( { item }: any ) => {
-
-const CheckBox = ( {text}: any ) => {
-  const [ selected, setSelected ] = useState<boolean>(false)
-  
-  const handleSelected = () => {
-    setSelected(!selected)
-  }
-
-  return (
-    <View style={styles.checkBoxContainer}>
-      <Pressable onPress={handleSelected}>
-      {({ pressed }) => (
-        <>
-          <FontAwesome name={selected ? 'check-square' : 'square'} size={18} />
-          <FontAwesome name={text.toLowerCase()} size={22}  />
-          <Text>{text}</Text>
-        </>
-      )}
-      </Pressable>
-    </View>
-  )
-}
-
-
 export default function NewRequest() {
   const [ catService, setCatService ] = useState<boolean>(false);
   const [ dogService, setDogService ] = useState<boolean>(false);
