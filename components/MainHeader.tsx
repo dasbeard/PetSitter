@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'expo-router'
 import { FontAwesome } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
-import { Text } from '@/components/Themed'
+// import { Text } from '@/components/Themed'
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -15,12 +15,12 @@ const MainHeader = () => {
       <View style={styles.mainContianer}>
         <View style={styles.left}>
 
-        <Link href={'/(auth)'} asChild>
+        <Link href={'/(auth)/'} asChild>
           { colorScheme === 'dark' ? (
             <Pressable>
               {({ pressed }) => (
                 <Image 
-                source={require( '../assets/images/TempLogo_Invert.png')} 
+                source={require( '../assets/icons/TempLogo_Alt.png')} 
                 style={[styles.image, {opacity: pressed ? 0.5 : 1}]}
                 />
               )}
@@ -29,7 +29,7 @@ const MainHeader = () => {
             <Pressable>
               {({ pressed }) => (
                 <Image 
-                source={require( '../assets/images/TempLogo.png')} 
+                source={require( '../assets/icons/TempLogo.png')} 
                 style={[styles.image, {opacity: pressed ? 0.5 : 1}]}
                 />
               )}
@@ -40,7 +40,8 @@ const MainHeader = () => {
         
         <View style={styles.right}>
           <View style={styles.linkContainer}>
-            <Link push href={'/(auth)/NewRequest'} style={ null }  asChild>
+            {/* <Link push href={'/(auth)/NewRequest'} style={ null }  asChild> */}
+            <Link href={'/(newService)/'} asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome 
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     height: Platform.OS === 'web' ? 65 : Platform.OS === 'android' ? 50 : 50,
     marginTop: Platform.OS === 'android' ? 45 : 0,
+    marginBottom: 4,
     flexDirection: 'row',
     alignContent: 'space-between',
     marginHorizontal: 6,

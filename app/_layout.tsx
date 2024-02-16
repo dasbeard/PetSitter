@@ -66,7 +66,7 @@ const Layout = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if(session){
         setSession(session)
-        router.replace('/(auth)')
+        router.replace('/(auth)/')
       }
     })
   
