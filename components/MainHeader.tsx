@@ -11,7 +11,7 @@ const MainHeader = () => {
   const colorScheme = useColorScheme(); 
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: colorScheme=='light' ? Colors.light.headerColor : Colors.dark.headerColor }}>
       <View style={styles.mainContianer}>
         <View style={styles.left}>
 
@@ -80,7 +80,7 @@ const MainHeader = () => {
 const styles = StyleSheet.create({
   mainContianer: {
     // borderWidth:1,
-    borderColor: 'red',
+    // borderColor: 'red',
     height: Platform.OS === 'web' ? 65 : Platform.OS === 'android' ? 50 : 50,
     marginTop: Platform.OS === 'android' ? 45 : 0,
     marginBottom: 4,
@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'web' ? 50 : 40,
     width: Platform.OS === 'web' ? 50 : 40,
     // borderWidth:1,
-    borderColor: 'green',
+    // borderColor: 'green',
   },
   right:{
     // borderWidth:1,
-    borderColor: 'blue',
+    // borderColor: 'blue',
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
