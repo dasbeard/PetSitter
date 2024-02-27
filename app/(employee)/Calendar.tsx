@@ -9,9 +9,11 @@ export default function EmployeeCalendar() {
       <Link href={'/(employee)/Calendar'}>
         <Text>Calendar</Text>
       </Link>
+
       <Link href={'/(employee)/Profile'}>
         <Text>Profile</Text>
       </Link>
+      
       <Link href={'/(employee)'}>
         <Text>index</Text>
       </Link>

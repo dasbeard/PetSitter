@@ -17,13 +17,15 @@ export default function EmployeeEventItem({data, pressed}:{data?:any, pressed?:b
     ]
 
     const handlePress= () => {
-      router.push(`/(employee)/Appointment/${data.id}`)    
+      router.push(`/(employee)/visit/${data.id}`)    
     }
 
   return (     
     <Pressable onPress={handlePress}>
       {({ pressed }) => (
-      <View style={[styles.container, {borderColor: colorScheme=='light' ? '#101' : '#959595', opacity: pressed ? 0.5 : 1 }]}>
+
+      <View lightColor='rgba(0,0,0, 0.05)' style={[styles.container, {borderColor: colorScheme=='light' ? '#101' : '#959595', opacity: pressed ? 0.5 : 1 }]}>
+        
         <View style={styles.clientContainer}>
           <Image style={styles.clientAvatar} source={{uri:data.client.picture.avatar_url}} />
           <Text style={styles.clientName}>{data.client.firstName} {data.client.lastName}</Text>
@@ -95,9 +97,11 @@ const styles=StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
     // backgroundColor: '#333',
+    // backgroundColor: 'rgba(0,0,0,0',
   },
   clientContainer:{
     // backgroundColor: '#cacaca',
+    backgroundColor: 'rgba(0,0,0,0)',
     marginHorizontal: 8,
     marginVertical: 1,
     width: 110,

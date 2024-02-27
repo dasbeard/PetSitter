@@ -66,7 +66,11 @@ const Layout = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if(session){
         setSession(session)
-        router.replace('/(auth)/')
+        // router.replace('/(auth)/')
+        router.replace('/(employee)/')
+      } else {
+        router.replace('/(_public)')
+        setSession(null)
       }
     })
   
@@ -77,7 +81,7 @@ const Layout = () => {
         // router.replace('/(auth)')
         router.replace('/(employee)')
       } else {
-        router.replace('/(public)')
+        router.replace('/(_public)')
         setSession(null)
       }
     })
@@ -85,6 +89,7 @@ const Layout = () => {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack 
+          initialRouteName='/(_public)'
           screenOptions={{
             headerShown: false,
             // headerTitle: 'Pet Sitter'
