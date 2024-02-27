@@ -1,10 +1,10 @@
-import { Image, StyleSheet } from 'react-native'
+import { Image, Pressable, StyleSheet } from 'react-native'
 import { Text, View } from '@/components/Themed';
 import { useColorScheme } from './useColorScheme';
+import { Link, router } from 'expo-router';
 
-export default function EventItem({data}:{data?:any}) {
+export default function EventItem({data, pressed}:{data?:any, pressed?:boolean}) {
     const apptDate = new Date(data.appointmentDate).toLocaleDateString()
-    
 
     const colorScheme = useColorScheme();
     const petBgColors =[
@@ -17,60 +17,67 @@ export default function EventItem({data}:{data?:any}) {
     ]
 
   return (
+    <Link href={{pathname: `/(auth)/${data.id}`, params: {id: data.id, title: data.type}}}  asChild>
+      <Pressable>
+        {({ pressed }) => (
+        <View style={[styles.container, {borderColor: colorScheme=='light' ? '#101' : '#959595', opacity: pressed ? 0.5 : 1 }]}>
+          <View style={styles.clientContainer}>
+            <Image style={styles.clientAvatar} source={{uri:data.client.picture.avatar_url}} />
+            <Text style={styles.clientName}>{data.client.firstName} {data.client.lastName}</Text>
+          </View>
+          
+          <View style={styles.appointDetails}>
+            <Text style={styles.appointType}>{data.type}</Text>
+            <Text style={styles.appointTime}>{apptDate} - {data.appointmentTime}</Text>
+            <View style={styles.addressContainer}>
+              <Text style={styles.clientAddress}>{data.client.location.address}. </Text>
+              <Text style={styles.clientAddress}>{data.client.location.city}, {data.client.location.state}</Text>
+            </View>
+          </View>
 
-    <View style={[styles.container, {borderColor: colorScheme=='light' ? '#101' : '#959595' }]}>
-      <View style={styles.clientContainer}>
-        <Image style={styles.clientAvatar} source={{uri:data.client.picture.avatar_url}} />
-        <Text style={styles.clientName}>{data.client.firstName} {data.client.lastName}</Text>
-      </View>
-      
-      <View style={styles.appointDetails}>
-        <Text style={styles.appointType}>{data.type}</Text>
-        <Text style={styles.appointTime}>{apptDate} - {data.appointmentTime}</Text>
-        <View style={styles.addressContainer}>
-          <Text style={styles.clientAddress}>{data.client.location.address}. </Text>
-          <Text style={styles.clientAddress}>{data.client.location.city}, {data.client.location.state}</Text>
+          <View style={styles.petContainer}>
+            {data.pets.map((pet: any, _idx: number, array: any) => {
+              if (_idx > 1 && _idx < 4) {
+                return <Image 
+                  key={_idx}
+                  style={[
+                    styles.petImages, { 
+                    left: array.length < 4 ? 10 : _idx%2===0  ? 0: 20, 
+                    marginTop: 20,
+                    backgroundColor: petBgColors[_idx], 
+                  }]}
+                  source={{uri: pet.image_url}}
+                />
+              } else if (_idx > 3 && _idx < 5){
+                return <Image 
+                  key={_idx}
+                  style={[
+                    styles.petImages, { 
+                    // left: _idx%2===1 ? 20: 0, 
+                    left: array.length < 5 ? 10 : _idx%2===0  ? 0: 20, 
+                    marginTop: 40,
+                    backgroundColor: petBgColors[_idx], 
+                  }]}
+                  source={{uri: pet.image_url}}
+                />
+              } else {
+                return <Image 
+                  key={_idx}
+                  style={[
+                    styles.petImages, { 
+                      left: _idx%2===1 ? 20: 0, 
+                      marginTop: _idx > 1 ? 20: 0,
+                      backgroundColor: petBgColors[_idx], 
+                    }]}
+                  source={{uri: pet.image_url}}
+                />
+              }
+            })}
+          </View>
         </View>
-      </View>
-
-      <View style={styles.petContainer}>
-        {data.pets.map((pet: any, _idx: number, array: any) => {
-          if (_idx > 1 && _idx < 4) {
-            return <Image 
-            style={[
-              styles.petImages, { 
-              left: array.length < 4 ? 10 : _idx%2===0  ? 0: 20, 
-              marginTop: 20,
-              backgroundColor: petBgColors[_idx], 
-            }]}
-            source={{uri: pet.image_url}}
-            />
-          } else if (_idx > 3 && _idx < 5){
-            return <Image 
-            style={[
-              styles.petImages, { 
-              // left: _idx%2===1 ? 20: 0, 
-              left: array.length < 5 ? 10 : _idx%2===0  ? 0: 20, 
-              marginTop: 40,
-              backgroundColor: petBgColors[_idx], 
-             }]}
-            source={{uri: pet.image_url}}
-            />
-          } else {
-            return <Image 
-            style={[
-              styles.petImages, { 
-                left: _idx%2===1 ? 20: 0, 
-                marginTop: _idx > 1 ? 20: 0,
-                backgroundColor: petBgColors[_idx], 
-              }]}
-            source={{uri: pet.image_url}}
-            />
-          }
-})}
-      </View>
-
-    </View>
+        )}
+      </Pressable>
+      </Link>
   )
 }
 
@@ -79,8 +86,8 @@ const styles=StyleSheet.create({
   container:{
     flex:1,
     borderWidth:1,
-    borderRadius:8,
-    marginBottom: 16,
+    borderRadius:14,
+    marginBottom: 12,
     // marginTop: 4,
     paddingVertical: 2,
     flexDirection: 'row',
@@ -155,3 +162,4 @@ const styles=StyleSheet.create({
   },
   
 })
+

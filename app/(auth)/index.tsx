@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { Link } from 'expo-router';
 import EventItem from '@/components/EventItem';
@@ -22,7 +22,8 @@ export default function Dashboard() {
           data={data}
           estimatedItemSize={25}
           keyExtractor={(item:any) => item.id}
-          renderItem={({item}) => <EventItem key={item.id} data={item}/>}
+          renderItem={({item}) => <EventItem data={item}/>
+        }
         />
       </View>
 

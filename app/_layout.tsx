@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import { Slot, Stack, router } from 'expo-router'
+import { Stack, router } from 'expo-router'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { AppState } from "react-native";
+// import { AppState } from "react-native";
 import { supabase } from '@/utils/supabase';
 import { useFonts } from 'expo-font';
 import { useColorScheme } from '@/components/useColorScheme';
 import * as SplashScreen from 'expo-splash-screen';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useAuthStore from '@/hooks/Auth';
-import MainHeader from '@/components/MainHeader';
+
 
 
 
