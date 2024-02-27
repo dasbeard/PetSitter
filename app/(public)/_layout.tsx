@@ -15,15 +15,7 @@ export default function PublicLayout() {
         headerTitleAlign: 'center',
       }}
     >
-      <Stack.Screen 
-        name='index'
-        options={{
-          // headerTitle: 'Pet Sitter',
-          // headerTitleAlign: 'center',
-          // headerBackVisible: false,
-        }}
-
-      />
+      <Stack.Screen name='index'/>
       <Stack.Screen 
         name='Register' 
         options={{

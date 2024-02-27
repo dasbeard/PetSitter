@@ -1,20 +1,21 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { Link } from 'expo-router';
-import EventItem from '@/components/EventItem';
+import EmployeeEventItem from '@/components/EmployeeEventItem';
 
 
 import dummyData from '@/dummydata.js'
 import { FlashList } from '@shopify/flash-list';
 
-export default function Dashboard() {
+export default function ActiveEvents() {
   const data = dummyData;
 
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>(Auth)Dashboard</Text>
+        <Text style={styles.title}>(employee)ActiveEvents</Text>
+        
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       </View>
       <View style={styles.list}>
@@ -22,7 +23,7 @@ export default function Dashboard() {
           data={data}
           estimatedItemSize={25}
           keyExtractor={(item:any) => item.id}
-          renderItem={({item}) => <EventItem data={item}/>
+          renderItem={({item}) => <EmployeeEventItem data={item}/>
         }
         />
       </View>

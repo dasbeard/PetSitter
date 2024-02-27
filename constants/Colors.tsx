@@ -5,7 +5,6 @@ export default {
   light: {
     text: '#000',
     background: '#d9e3ec',
-    // background: '#fff',
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
@@ -13,11 +12,19 @@ export default {
   },
   dark: {
     text: '#fff',
-    background: '#010101',
-    // background: '#000',
+    // background: '#010101',
+    // background: '#09121b',
+    background: '#16181a',
+    // background: '#121212',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
-    headerColor: '#000',
+    // headerColor: '#010101',
+    headerColor: '#030a0f',
+    
+    
+    // headerColor: 'rgba(28, 28, 30, 0.5)',
+
+    
   },
 };

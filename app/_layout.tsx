@@ -71,9 +71,11 @@ const Layout = () => {
     })
   
     supabase.auth.onAuthStateChange((_event, session) => {  
+      // THis will need to be updated to determin employee/client
       if(session){
         setSession(session)
-        router.replace('/(auth)')
+        // router.replace('/(auth)')
+        router.replace('/(employee)')
       } else {
         router.replace('/(public)')
         setSession(null)
