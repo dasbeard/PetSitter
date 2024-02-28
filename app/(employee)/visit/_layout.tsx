@@ -1,8 +1,5 @@
-import BackHeader from "@/components/BackHeader";
-import Colors from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import { Slot, Stack, router } from "expo-router";
-import { Platform } from "react-native";
+import BackHeader from "@/components/Headers/BackHeader";
+import { Stack } from "expo-router";
 
 export default function EventsStack() {
 

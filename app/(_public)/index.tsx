@@ -5,7 +5,7 @@ import { Text } from '@/components/Themed'
 import useAuthStore from '@/hooks/Auth'
 import { AuthError } from '@supabase/supabase-js'
 import { FontAwesome } from '@expo/vector-icons'
-import BasicButton from '@/components/BasicButton'
+import BasicButton from '@/components/Buttons/BasicButton'
 import Spacer from '@/components/Spacer'
 
 const Login = () => {

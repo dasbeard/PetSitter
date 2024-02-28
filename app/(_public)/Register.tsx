@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Text } from '@/components/Themed'
 import { FontAwesome } from '@expo/vector-icons'
 import useAuthStore from '@/hooks/Auth'
-import BasicButton from '@/components/BasicButton'
+import BasicButton from '@/components/Buttons/BasicButton'
 import Spacer from '@/components/Spacer'
 
 const Register = () => {

@@ -1,15 +1,12 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
-import { Link } from 'expo-router';
 import EmployeeEventItem from '@/components/EmployeeEventItem';
-
+import { FlashList } from '@shopify/flash-list';
 
 import dummyData from '@/dummydata.js'
-import { FlashList } from '@shopify/flash-list';
 
 export default function ActiveEvents() {
   const data = dummyData;
-
 
   return (
     <View style={styles.container}>
@@ -29,7 +26,6 @@ export default function ActiveEvents() {
       </View>
 
     </View>
-
   );
 }
 

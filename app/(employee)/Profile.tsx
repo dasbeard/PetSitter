@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
-import BasicButton from '@/components/BasicButton';
+import BasicButton from '@/components/Buttons/BasicButton';
 import useAuthStore from '@/hooks/Auth';
 
 export default function EmployeeProfile() {

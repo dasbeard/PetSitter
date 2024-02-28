@@ -1,5 +1,5 @@
 import { Stack, router } from "expo-router";
-import MainHeader from "@/components/MainHeader";
+import EmployeeHeader from "@/components/Headers/EmployeeHeader";
 import { Platform, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { View } from "@/components/Themed";
@@ -23,7 +23,7 @@ export default function AuthLayout() {
   return (
     <>
     { isWeb ? (
-      <MainHeader />
+      <EmployeeHeader />
     ):(
       null
     )}

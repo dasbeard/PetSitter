@@ -1,4 +1,4 @@
-import EmployeeHeader from "@/components/EmployeeHeader";
+import EmployeeHeader from "@/components/Headers/EmployeeHeader";
 import { Stack } from "expo-router";
 
 export default function EmployeeRootLayout() {

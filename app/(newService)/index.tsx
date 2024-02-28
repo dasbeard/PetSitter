@@ -1,4 +1,4 @@
-import SelectionButton from "@/components/SelectionButton";
+import SelectionButton from "@/components/Buttons/SelectionButton";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native"
 import { View, Text } from "@/components/Themed"

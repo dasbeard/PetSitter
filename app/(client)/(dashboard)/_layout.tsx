@@ -1,4 +1,4 @@
-import { MaterialTopTabs } from "@/app/layouts/employeeTopTabs";
+import { MaterialTopTabs } from "@/app/layouts/TopTabsLayout";
 import { View } from "@/components/Themed";
 import { Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

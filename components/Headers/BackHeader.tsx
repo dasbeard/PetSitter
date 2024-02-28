@@ -67,59 +67,6 @@ const styles = StyleSheet.create({
     // borderColor: 'blue',
     flex: 1,
     flexDirection: 'row',
-  },  
-
-
-  // Contianer: {
-  //   // borderWidth:1,
-  //   // borderColor: 'red',
-  //   height: Platform.OS === 'web' ? 65 : Platform.OS === 'android' ? 50 : 50,
-  //   marginTop: Platform.OS === 'android' ? 45 : 0,
-  //   marginBottom: 4,
-  //   flexDirection: 'row',
-  //   alignContent: 'space-between',
-  //   marginHorizontal: 6,
-
-  // },
-  // left:{
-  //   marginHorizontal: Platform.OS === 'web' ? 20 : 10,
-  //   marginVertical: Platform.OS === 'web' ? 15 : 10,
-  //   justifyContent: 'center',
-  //   flex: 1,
-  // },
-  // image:{
-  //   height: Platform.OS === 'web' ? 50 : 40,
-  //   width: Platform.OS === 'web' ? 50 : 40,
-  //   // borderWidth:1,
-  //   // borderColor: 'green',
-  // },
-  // right:{
-  //   // borderWidth:1,
-  //   // borderColor: 'blue',
-  //   flex: 1,
-  //   justifyContent: 'flex-end',
-  //   alignItems: 'center',
-  //   flexDirection: 'row',
-  // },
-  // linkContainer: {
-  //   marginHorizontal: Platform.OS === 'web' ? 10 : 8,
-  // }
+  },
 
 })
-
-// export default MainHeader
-
-          {/* <View style={styles.linkContainer}> */}
-            {/* <Link href={'/(auth)/Profile'} style={styles.linkContainer} asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name='user-circle'
-                    size={24}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ opacity: pressed ? 0.5 : 1}}
-                  />
-                )}
-              </Pressable>
-            </Link> */}
-          {/* </View> */}
