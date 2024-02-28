@@ -2,15 +2,50 @@ import { supabase } from '@/utils/supabase';
 import { AuthError, Session, User } from '@supabase/supabase-js'
 import {create} from 'zustand'
 
+export interface UserData {
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  contact_email: string;
+  avatar_url: string;
+  isEmployee: boolean;
+  isManager: boolean;
+}
 export interface AuthState {
   session: Session | null;
   setSession: (session: Session | null) => void;
   signIn: (email:string, password: string) => Promise<User | AuthError | null>;
   signUpWithEmail: (email:string, password: string) => Promise<User | AuthError | null>;
   logout: () => Promise<void>;
+  userData: UserData | null;
+  setUserData: (userData: UserData | null) => void;
+  getUserData: (session: Session) => Promise< UserData | null>
 }
 
 const useAuthStore = create<AuthState>((set) =>({
+  userData: null,
+  setUserData: (userData) => set({userData}),
+
+  getUserData: async (session) =>  {
+      if (!session.user) throw new Error('No user in the session')
+
+      const { data, error, status } = await supabase
+      .from('users')
+      .select('username, first_name, last_name, contact_email, avatar_url, isEmployee, isManager')
+      .eq('id', session?.user.id)
+      .single()
+
+      if(error && status !== 406){
+        return Promise.reject(null)
+      }
+
+      const allData ={...data, id: session.user.id} as UserData
+
+      return Promise.resolve(allData)
+  },
+
+
   session: null,
   setSession: (session) => set({session }),
   

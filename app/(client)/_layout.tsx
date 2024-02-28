@@ -1,10 +1,11 @@
-import EmployeeHeader from "@/components/Headers/EmployeeHeader";
+import ClientHeader from "@/components/Headers/ClientHeader";
 import { Stack } from "expo-router";
 
-export default function ClientRootLayout() {
+export default function ClientRootLayout() {  
+
   return (
     <>
-      <EmployeeHeader />
+      <ClientHeader />
       <Stack screenOptions={{headerShown: false}}>
         <Stack.Screen name="index" />
         <Stack.Screen name="Profile" />

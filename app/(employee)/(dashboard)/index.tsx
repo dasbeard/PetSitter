@@ -10,11 +10,10 @@ export default function ActiveEvents() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Text style={styles.title}>(employee)ActiveEvents</Text>
-        
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      </View>
+      </View> */}
       <View style={styles.list}>
         <FlashList 
           data={data}
@@ -33,12 +32,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
+    // marginHorizontal: 15,
   },
   list:{
-    flex:9,
+    flex:1,
+    width: '100%',
     minHeight: 50,
-    width: '100%',    
+    marginTop: 12,
+
   },
   header:{
     height: 50,

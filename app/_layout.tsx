@@ -7,7 +7,8 @@ import { useFonts } from 'expo-font';
 import { useColorScheme } from '@/components/useColorScheme';
 import * as SplashScreen from 'expo-splash-screen';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import useAuthStore from '@/hooks/Auth';
+import useAuthStore, { UserData } from '@/hooks/Auth';
+import { Session } from '@supabase/supabase-js';
 
 
 
@@ -57,29 +58,61 @@ export default function RootLayout() {
 
 const Layout = () => {
   const colorScheme = useColorScheme()
-  const { setSession } = useAuthStore()
+  const { setSession, setUserData, getUserData } = useAuthStore()
   console.log('(app)/_layout ');
+
+  const setPaths = async (session: Session) => {
+    setSession(session)
+    // router.replace('/(employee)')
+    if (session?.user){
+      const data = await getUserData(session)
+      console.log('User Data', data);
+      
+      setUserData(data)
+      
+      if (data?.isEmployee){
+        router.replace('/(employee)')
+      } else {
+        router.replace('/(client)')
+      }
+    } else {
+      router.replace('/(_public)')
+    }
+  }
 
   useEffect(() => {
     // console.log('(app)/layout - useEffect');
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       if(session){
-        setSession(session)
-        // router.replace('/(auth)/')
-        router.replace('/(employee)/')
+        await setPaths(session)
+        // setSession(session)
+        // // router.replace('/(employee)')
+        // if (session?.user){
+        //   const data = await getUserData(session)
+        //   console.log('User Data', data);
+          
+        //   setUserData(data)
+          
+        //   if (data?.isEmployee){
+        //     router.replace('/(employee)')
+        //   } else {
+        //     router.replace('/(client)')
+        //   }
+        // }
       } else {
         router.replace('/(_public)')
         setSession(null)
       }
     })
   
-    supabase.auth.onAuthStateChange((_event, session) => {  
+    supabase.auth.onAuthStateChange(async (_event, session) => {  
       // THis will need to be updated to determin employee/client
       if(session){
         setSession(session)
         // router.replace('/(auth)')
-        router.replace('/(employee)')
+        // router.replace('/(employee)')
+        await setPaths(session)
       } else {
         router.replace('/(_public)')
         setSession(null)
@@ -98,3 +131,17 @@ const Layout = () => {
     </ThemeProvider>
   )
 }
+
+
+
+// supabase.auth.onAuthStateChange((_event, session) => {  
+//   // THis will need to be updated to determin employee/client
+//   if(session){
+//     setSession(session)
+//     // router.replace('/(auth)')
+//     router.replace('/(employee)')
+//   } else {
+//     router.replace('/(_public)')
+//     setSession(null)
+//   }
+// })

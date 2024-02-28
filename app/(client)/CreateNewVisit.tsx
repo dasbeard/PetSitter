@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Stack } from "expo-router";
 
 export default function CreateNewVisit() {
+  console.log('Test');
+  
+
   return (
-    <View>
-      <Text>CreateNewVisit</Text>
-    </View>
+    <Stack screenOptions={{ headerShown: true}}>
+      <Stack.Screen name="(newService)" options={{headerShown: false}} />
+    </Stack>
   )
 }
