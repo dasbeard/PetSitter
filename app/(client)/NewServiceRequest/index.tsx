@@ -11,7 +11,7 @@ export default function NewRequest() {
 
   const handleServiceSelection = (service: string) => {
     setEventType(service)
-    router.push('/(newService)/DateAndDetails')
+    router.push('/(client)/NewServiceRequest/Details')
   }
 
   return (

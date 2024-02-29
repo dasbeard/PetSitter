@@ -1,15 +1,13 @@
-import { View, StyleSheet, Platform, Pressable, Image } from 'react-native'
+import { View, StyleSheet, Platform, Pressable } from 'react-native'
 import React from 'react'
-import { Link, router } from 'expo-router'
+import { router } from 'expo-router'
 import { FontAwesome6 } from '@expo/vector-icons'
 import Colors from '@/constants/Colors'
 import { Text } from '@/components/Themed'
-
 import { useColorScheme } from '@/components/useColorScheme';
 
 export default function BackHeader({ headerText}:{headerText?: string}) {
   const colorScheme = useColorScheme(); 
-
 
   return (
       <View style={styles.container}>

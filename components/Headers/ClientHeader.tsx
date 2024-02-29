@@ -40,7 +40,7 @@ export default function ClientHeader() {
         
         <View style={styles.right}>
           <View style={styles.linkContainer}>
-            <Link href={'/(client)/(newService)'} asChild>
+            <Link href={'/(client)/NewServiceRequest'} asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome 

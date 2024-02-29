@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Stack, router } from 'expo-router'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-// import { AppState } from "react-native";
+import { AppState } from "react-native";
 import { supabase } from '@/utils/supabase';
 import { useFonts } from 'expo-font';
 import { useColorScheme } from '@/components/useColorScheme';
@@ -11,17 +11,15 @@ import useAuthStore, { UserData } from '@/hooks/Auth';
 import { Session } from '@supabase/supabase-js';
 
 
-
-
-// AppState.addEventListener('change', (state) => {
-//   console.log('app/_layout - APP STATE RUNNING');
+AppState.addEventListener('change', (state) => {
+  console.log('app/_layout - APP STATE RUNNING');
   
-//   if (state === 'active') {
-//     supabase.auth.startAutoRefresh()
-//   } else {
-//     supabase.auth.stopAutoRefresh()
-//   }
-// })
+  if (state === 'active') {
+    supabase.auth.startAutoRefresh()
+  } else {
+    supabase.auth.stopAutoRefresh()
+  }
+})
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,15 +57,12 @@ export default function RootLayout() {
 const Layout = () => {
   const colorScheme = useColorScheme()
   const { setSession, setUserData, getUserData } = useAuthStore()
-  console.log('(app)/_layout ');
+  // console.log('(app)/_layout ');
 
   const setPaths = async (session: Session) => {
     setSession(session)
-    // router.replace('/(employee)')
     if (session?.user){
       const data = await getUserData(session)
-      console.log('User Data', data);
-      
       setUserData(data)
       
       if (data?.isEmployee){
@@ -81,25 +76,11 @@ const Layout = () => {
   }
 
   useEffect(() => {
-    // console.log('(app)/layout - useEffect');
+    console.log('(app)/layout - useEffect');
 
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if(session){
         await setPaths(session)
-        // setSession(session)
-        // // router.replace('/(employee)')
-        // if (session?.user){
-        //   const data = await getUserData(session)
-        //   console.log('User Data', data);
-          
-        //   setUserData(data)
-          
-        //   if (data?.isEmployee){
-        //     router.replace('/(employee)')
-        //   } else {
-        //     router.replace('/(client)')
-        //   }
-        // }
       } else {
         router.replace('/(_public)')
         setSession(null)
@@ -107,11 +88,8 @@ const Layout = () => {
     })
   
     supabase.auth.onAuthStateChange(async (_event, session) => {  
-      // THis will need to be updated to determin employee/client
       if(session){
         setSession(session)
-        // router.replace('/(auth)')
-        // router.replace('/(employee)')
         await setPaths(session)
       } else {
         router.replace('/(_public)')
@@ -119,13 +97,13 @@ const Layout = () => {
       }
     })
   }, [])
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack 
           initialRouteName='/(_public)'
           screenOptions={{
             headerShown: false,
-            // headerTitle: 'Pet Sitter'
           }}
         />    
     </ThemeProvider>

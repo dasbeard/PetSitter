@@ -6,7 +6,7 @@ export default function CreateNewVisit() {
 
   return (
     <Stack screenOptions={{ headerShown: true}}>
-      <Stack.Screen name="(newService)" options={{headerShown: false}} />
+      <Stack.Screen name="NewServiceRequest" options={{headerShown: false}} />
     </Stack>
   )
 }

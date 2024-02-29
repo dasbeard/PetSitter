@@ -11,6 +11,7 @@ export interface UserData {
   avatar_url: string;
   isEmployee: boolean;
   isManager: boolean;
+  created_at: string;
 }
 export interface AuthState {
   session: Session | null;
@@ -32,7 +33,7 @@ const useAuthStore = create<AuthState>((set) =>({
 
       const { data, error, status } = await supabase
       .from('users')
-      .select('username, first_name, last_name, contact_email, avatar_url, isEmployee, isManager')
+      .select('username, first_name, last_name, contact_email, avatar_url, isEmployee, isManager, created_at')
       .eq('id', session?.user.id)
       .single()
 

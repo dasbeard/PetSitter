@@ -93,7 +93,7 @@ const styles = ( pressed?: any, colorScheme?: string) => StyleSheet.create({
     marginBottom: 12,
     paddingVertical: 2,
     flexDirection: 'row',
-    borderColor: colorScheme=='light' ? '#101' : '#3a3e49', 
+    borderColor: colorScheme=='light' ? '#000511' : '#3a3e49', 
     opacity: pressed ? 0.5 : 1,
 
     elevation: pressed ? 1 : 2,

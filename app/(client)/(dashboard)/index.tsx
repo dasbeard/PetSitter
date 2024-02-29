@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { Link } from 'expo-router';
-import EmployeeEventItem from '@/components/EmployeeEventItem';
+import ClientEventItem from '@/components/ClientEventItem';
 
 
 import dummyData from '@/dummydata.js'
@@ -23,7 +23,7 @@ export default function ActiveEvents() {
           data={data}
           estimatedItemSize={25}
           keyExtractor={(item:any) => item.id}
-          renderItem={({item}) => <EmployeeEventItem data={item}/>
+          renderItem={({item}) => <ClientEventItem data={item}/>
         }
         />
       </View>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
   },
   list:{
     flex:9,
