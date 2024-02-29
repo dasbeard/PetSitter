@@ -23,7 +23,6 @@ export default function PublicLayout() {
           headerBackTitleVisible: true,
         }}
       />
-      <Stack.Screen name='modal' options={{presentation: 'modal'}} />
     </Stack>
     
   );

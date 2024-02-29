@@ -41,6 +41,7 @@ const Register = () => {
         <FontAwesome name='envelope' size={12} style={{ marginRight: 6}}/>
         <TextInput 
           style={styles.inputFeild} 
+          autoCapitalize='none'
           placeholder='email@address.com' 
           value={email} 
           onChangeText={setEmail} 

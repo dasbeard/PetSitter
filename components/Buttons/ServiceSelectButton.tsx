@@ -8,7 +8,7 @@ interface Img {
   dark: string;
 }
 
-export default function SelectionButton ( { service, onPress } :{service: string, onPress?: any } ) {
+export default function ServiceSelectButton ( { service, pressed, onPress } :{service: string, pressed?: boolean, onPress?: any } ) {
   const colorScheme = useColorScheme(); 
 
   const allImagesArray = [
@@ -62,22 +62,23 @@ export default function SelectionButton ( { service, onPress } :{service: string
   let Icon = allImagesArray.find(ob => ob.id === service.replace(' ','').toLowerCase() )
 
   return (
-    <Pressable onPress={onPress} >
-      {({ pressed }) => (
+    // <Pressable onPress={onPress}>
+    //   {({ pressed }) => (
         <View style={styles(pressed, colorScheme!).container}>
-          <Image 
-            source={ colorScheme === 'light' ? Icon?.light : Icon?.dark } 
-            style={styles().image}
-          />
-          
-          <View style={styles().textContainer}>
-            <Text style={styles().mainText}>{service}</Text>
-            <Text style={styles().secondaryText}>Here are some details about the service</Text>
-          </View>
+          <View style={styles().content}>            
+            <Image 
+              source={ colorScheme === 'light' ? Icon?.light : Icon?.dark } 
+              style={styles().image}
+            />
+            <View style={styles().textContainer}>
+              <Text style={styles().mainText}>{service}</Text>
+              <Text style={styles().secondaryText}>Here are some details about the service</Text>
 
+            </View>
+          </View>
         </View>
-      )}
-    </Pressable> 
+    //   )}
+    // </Pressable> 
   )
 }
 
@@ -85,35 +86,52 @@ export default function SelectionButton ( { service, onPress } :{service: string
 
 const styles = ( pressed?: boolean, colorScheme?: string ) =>  StyleSheet.create({
   container:{
+    width: '95%',
+    alignSelf: 'center',
     flexDirection: 'row',    
     borderWidth: 1,
-    borderRadius: 8,
+    // backgroundColor: 'green',
+    // backgroundColor: 'rgba(0,0,0,0)',
+    // borderColor: colorScheme === 'light' ? '#111' : '#fff',
     borderColor: colorScheme === 'light' ? 'rgba(0, 5, 17, 0.25)' : 'rgba(21, 16, 19, 0.92)',
-    marginVertical: 2,
-    padding: 12,
-    alignItems: 'center',
-
+    borderRadius: 8,
+    // overflow: 'hidden',
+    margin: 6,
+    padding: 15,
+   
     opacity: pressed ? 0.5 : 1,
     elevation: pressed ? 1 : 3,
+    // shadowColor: 'red',
     shadowColor: colorScheme === 'light' ? '#111' : '#222328',
     shadowOffset: {height: pressed ? 1.5 : 2.5, width: pressed ? 0.5 : 2},
+    // shadowOffset: {height: 5, width: 5},
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
+  content: {
+    flex:1,
+    flexDirection: 'row',    
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+
+  },
   image:{
-    flex: 1,
     height: 50,
     width: 50,
     resizeMode: 'contain',
+    marginBottom: 4,
+    marginRight: 35,
   },
+
   textContainer:{
-    flex: 3,
+    flex: 1,
     backgroundColor: 'rgba(0,0,0,0)',
+
   },
   mainText: {
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   secondaryText: {
     fontSize: 12,

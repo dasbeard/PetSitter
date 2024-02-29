@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 
 export default function CreateNewVisit() {
-  console.log('Test');
+  console.log('(client)/CreateNewVisit');
   
 
   return (

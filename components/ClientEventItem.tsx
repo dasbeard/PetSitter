@@ -19,11 +19,6 @@ export default function ClientEventItem({data, pressed}:{data?:any, pressed?:boo
   const day = DayOfWeek(asDate.getDay())
   const serviceTime = asDate.toLocaleTimeString()
 
-console.log(colorScheme);
-
-
-
-
   const handlePress= () => {
     // router.push(`/(client)/visit/${data.id}`)  
     console.log('pressed');
@@ -39,7 +34,7 @@ console.log(colorScheme);
           <Text style={styles().serviceData}>{day} {apptDate}</Text>
           <Text> at </Text>
           <Text style={styles().serviceData}>{serviceTime} </Text>
-          <Text style={styles().serviceData}>{data.type} </Text>
+          <Text style={styles().serviceData}>- {data.type} </Text>
         </View>
 
         <View style={ styles().container}>
@@ -63,12 +58,10 @@ console.log(colorScheme);
               <View style={styles().visitNotesContainer}>
                 <Text 
                   style={styles().visitNotesLead}
-                  numberOfLines={Platform.OS === 'web' ? undefined : 4} 
+                  numberOfLines={Platform.OS === 'web' ? undefined : 5} 
                 >
-                  Visit notes:
-                  <Text 
-                    style={styles().visitNotes}>
-                      Lorem ipsum dolor sit amet, consectetur adipi sicing elit. Quos quo beatae maio res nemo vitae, harum ex pedita itaque sed similique assumenda quibusdam laudantium sapiente magnam
+                  Visit notes: 
+                  <Text style={styles().visitNotes}> Lorem ipsum dolor sit amet, consectetur adipi sicing elit. Quos quo beatae maio res nemo vitae, harum ex pedita itaque sed similique assumenda quibusdam laudantium sapiente magnam
                   </Text>
                 </Text>
               </View>
@@ -102,7 +95,7 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 8,
+    marginBottom: 15,
     borderColor: colorScheme === 'light' ? 'rgba(0, 5, 17, 0.25)' : 'rgba(21, 16, 19, 0.92)',
     opacity: pressed ? 0.5 : 1,
     backgroundColor: 'rgba(249, 249, 254, 0.1)',
@@ -110,19 +103,13 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
     elevation: pressed ? 1 : 2,
     shadowColor: colorScheme === 'light' ? '#111' : '#222328',
     shadowOffset: {height: pressed ? 1.5 : 2.5, width: pressed ? 0.5: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   },
   header:{ 
-    // borderWidth: 1,
-    // borderColor: 'red',
     borderBottomWidth: 1,
-    // borderBottomColor: colorScheme ==='light' ? '#000511' : '#3a3e49',
-    
-    borderBottomColor: colorScheme ==='light' ? '#000511' : '#22252c',
-
+    borderBottomColor: colorScheme ==='light' ? '#111' : '#22252c',
     backgroundColor: colorScheme=='light' ? '#e1e4ec' : 'rgba(39, 44, 56, 0.90)',
-
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
 
@@ -131,16 +118,12 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'baseline',
     letterSpacing: 0.5,
-    // marginBottom: 3,
   },
   serviceData:{
     fontSize: 15,
     fontWeight: '500',
   },
   container:{
-    // borderWidth: 1,
-    // borderColor: 'blue',
-    
     flex: 4,
     flexDirection: 'row',
     borderBottomLeftRadius: 6,
@@ -151,15 +134,11 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
   imagesContainer: {
     flex: 1.75,
     flexDirection: 'row',
-    // borderWidth: 1,
-    // borderColor: colorScheme=='light' ? '#000511' : '#3a3e49',
-    // borderRadius: 6,
     borderBottomLeftRadius: 6,
     overflow: 'hidden',
   },
   mainImage:{
-    // height: 100,
-    height:Platform.OS === 'web' ? 175 : 100,
+    height:Platform.OS === 'web' ? 175 : 105,
     width: '60%',
     objectFit:'cover',
     overflow: 'hidden',
@@ -168,9 +147,7 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
   },
   secondaryImageContainer:{
     overflow: 'hidden',
-    // width: 40,
     width: '40%',   
-    // height: '50%',
     gap:1, 
   },
   secondaryImages:{
@@ -179,23 +156,14 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
     marginLeft: 1,
   },
   innerContainer: {
-    // borderWidth: 1,
-    // borderColor: 'green',
-
     flex: 3.5,
   },
   contentContainer:{
-    // borderWidth: 1,
-    // borderColor: 'red',
-  
     flex: 4,
     flexDirection: 'row',
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
   employeeContainer: {
-    // borderWidth: 1,
-    // borderColor: 'blue',
-
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -209,10 +177,9 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
 
     elevation: 2,
     shadowColor: colorScheme === 'light' ? '#111' : '#222328',
-    shadowOffset: {height: 3, width: 2},
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-        
+    shadowOffset: {height: 2.5, width: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 5,      
   },
   employeeImage:{
     height: '100%',
@@ -237,11 +204,13 @@ const styles = ( colorScheme?: string, pressed?: boolean) => StyleSheet.create({
     flex: 1,
     // borderColor: 'blue',
     // borderWidth: 1,
+    fontWeight: '500',
   },
   visitNotes:{
     
     // flex: 1,
     fontSize: 13,
+    fontWeight: '300',
   },
   quickAnswersContainer:{
     flex: 1,

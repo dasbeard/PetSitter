@@ -11,15 +11,15 @@ import useAuthStore, { UserData } from '@/hooks/Auth';
 import { Session } from '@supabase/supabase-js';
 
 
-AppState.addEventListener('change', (state) => {
-  console.log('app/_layout - APP STATE RUNNING');
+// AppState.addEventListener('change', (state) => {
+//   console.log('app/_layout - APP STATE RUNNING');
   
-  if (state === 'active') {
-    supabase.auth.startAutoRefresh()
-  } else {
-    supabase.auth.stopAutoRefresh()
-  }
-})
+//   if (state === 'active') {
+//     supabase.auth.startAutoRefresh()
+//   } else {
+//     supabase.auth.stopAutoRefresh()
+//   }
+// })
 
 SplashScreen.preventAutoHideAsync();
 

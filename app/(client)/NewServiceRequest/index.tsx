@@ -1,54 +1,44 @@
-import SelectionButton from "@/components/Buttons/SelectionButton";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native"
-import { View, Text } from "@/components/Themed"
+import { View } from "@/components/Themed"
 
 import useCreateEventStore from "@/hooks/CreateEvent";
+import SelectionButton from "@/components/Buttons/SelectionButton";
 
 export default function NewRequest() {
-
   const { setEventType } = useCreateEventStore();
 
+  
+  const serviceOptions= ['Dog Walk', 'Home Visit', 'Boarding' ]
+  
   const handleServiceSelection = (service: string) => {
-    setEventType(service)
-    router.push('/(client)/NewServiceRequest/Details')
+    // setEventType(service)
+    // router.push('/(client)/NewServiceRequest/Details')
+  
+    console.log('pressed');
+    
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.serviceType}>
-        <SelectionButton 
-          service="Dog Walk" 
-          onPressed={() => handleServiceSelection('dogWalk')} 
-        />
-
-        <SelectionButton 
-          service="Home Visit"
-          onPressed={() => handleServiceSelection('homeVisit')}
-        />
-
-        <SelectionButton 
-          service="Boarding"
-          onPressed={() => handleServiceSelection('boarding')}
-        />
-
-      </View>
-
+      {serviceOptions.map((item, _idx) => (
+        <View key={_idx} style={styles.serviceType}>
+          <SelectionButton service={item} onPress={() => handleServiceSelection(item)} />
+        </View>
+      ))}
     </View>
   )
 }
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    paddingTop: 10,
-  },
-  
-  serviceType:{
-    flex:.5,
-    justifyContent: 'space-evenly',
+    paddingTop: 12,
+    paddingHorizontal: 16,
   },
 
+  serviceType: {
+    marginVertical: 12,
+  },
 })
