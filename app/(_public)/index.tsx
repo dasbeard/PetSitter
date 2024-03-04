@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { Text } from '@/components/Themed'
 import useAuthStore from '@/hooks/Auth'
 import { AuthError } from '@supabase/supabase-js'
@@ -12,13 +12,24 @@ const Login = () => {
   const [ email, setEmail ] = useState<string>('test@test.com')
   const [ password, setPassword ] = useState<string>('123456')
   const [ loading, setLoading ] = useState<boolean>(false)
-  const { signIn } = useAuthStore();
+  const { signIn, getUserData, setUserData } = useAuthStore();
 
   const handleSignIn = async () => {
     setLoading(true)
     try {
-      const { error }: any = await signIn(email, password);
+      const { user, error }: any = await signIn(email, password);
       if(error) throw error
+
+      if (user){
+        const data = await getUserData(user)
+        setUserData(data)
+        
+        if (data?.isEmployee){
+          router.replace('/(employee)')
+        } else {
+          router.replace('/(client)')
+        }
+      } 
 
     } catch (error: any) {
       console.log('Error loggin in:', error);

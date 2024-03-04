@@ -8,7 +8,8 @@ import { useColorScheme } from '@/components/useColorScheme';
 import * as SplashScreen from 'expo-splash-screen';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useAuthStore, { UserData } from '@/hooks/Auth';
-import { Session } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
+// import { Session } from '@supabase/supabase-js';
 
 
 // AppState.addEventListener('change', (state) => {
@@ -59,10 +60,9 @@ const Layout = () => {
   const { setSession, setUserData, getUserData } = useAuthStore()
   // console.log('(app)/_layout ');
 
-  const setPaths = async (session: Session) => {
-    setSession(session)
-    if (session?.user){
-      const data = await getUserData(session)
+  const setPaths = async (user: User) => {
+    if (user){
+      const data = await getUserData(user)
       setUserData(data)
       
       if (data?.isEmployee){
@@ -80,7 +80,10 @@ const Layout = () => {
 
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if(session){
-        await setPaths(session)
+        setSession(session)
+        if (session.user){
+          await setPaths(session.user)
+        }
       } else {
         router.replace('/(_public)')
         setSession(null)
@@ -89,8 +92,8 @@ const Layout = () => {
   
     supabase.auth.onAuthStateChange(async (_event, session) => {  
       if(session){
-        setSession(session)
-        await setPaths(session)
+        // setSession(session)
+        await setPaths(session.user)
       } else {
         router.replace('/(_public)')
         setSession(null)

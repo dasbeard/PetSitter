@@ -6,13 +6,14 @@ import { FontAwesome } from '@expo/vector-icons'
 import useAuthStore from '@/hooks/Auth'
 import BasicButton from '@/components/Buttons/BasicButton'
 import Spacer from '@/components/Spacer'
+import { router } from 'expo-router'
 
 const Register = () => {
   const [ email, setEmail ] = useState<string>('test@test.com');
   const [ password, setPassword ] = useState<string>('123456');
   const [ confirmPassword, setConfirmPassword ] = useState<string>('123456');
   const [ loading, setLoading ] = useState<boolean>(false);
-  const { signUpWithEmail } = useAuthStore();
+  const { signUpWithEmail, getUserData, setUserData } = useAuthStore();
 
   const handleSignUp = async () => {
     setLoading(true);
@@ -23,8 +24,20 @@ const Register = () => {
     }
 
     try {
-      const { error } : any = signUpWithEmail(email, password)
+      const { user, error } : any = signUpWithEmail(email, password)
       if (error) throw error
+
+      if (user){
+        const data = await getUserData(user)
+        setUserData(data)
+        
+        if (data?.isEmployee){
+          router.replace('/(employee)')
+        } else {
+          router.replace('/(client)')
+        }
+      } 
+
     } catch (error: any) {
       console.log('Error creating account');
       alert(error.message)

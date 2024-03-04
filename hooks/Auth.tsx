@@ -17,33 +17,33 @@ export interface AuthState {
   session: Session | null;
   setSession: (session: Session | null) => void;
   signIn: (email:string, password: string) => Promise<User | AuthError | null>;
+  // signIn: (email:string, password: string) => Promise<Session | AuthError | null>;
   signUpWithEmail: (email:string, password: string) => Promise<User | AuthError | null>;
   logout: () => Promise<void>;
   userData: UserData | null;
   setUserData: (userData: UserData | null) => void;
-  getUserData: (session: Session) => Promise< UserData | null>
+  // getUserData: (session: Session) => Promise< UserData | null>
+  getUserData: (user: User) => Promise< UserData | null>
 }
 
 const useAuthStore = create<AuthState>((set) =>({
   userData: null,
   setUserData: (userData) => set({userData}),
 
-  getUserData: async (session) =>  {
-      if (!session.user) throw new Error('No user in the session')
+  getUserData: async (user) =>  {
+    const { data, error, status } = await supabase
+    .from('users')
+    .select('username, first_name, last_name, contact_email, avatar_url, isEmployee, isManager, created_at')
+    .eq('id', user.id)
+    .single()
 
-      const { data, error, status } = await supabase
-      .from('users')
-      .select('username, first_name, last_name, contact_email, avatar_url, isEmployee, isManager, created_at')
-      .eq('id', session?.user.id)
-      .single()
+    if(error && status !== 406){
+      return Promise.reject(null)
+    }
 
-      if(error && status !== 406){
-        return Promise.reject(null)
-      }
+    const allData ={...data, id: user.id} as UserData
 
-      const allData ={...data, id: session.user.id} as UserData
-
-      return Promise.resolve(allData)
+    return Promise.resolve(allData)    
   },
 
 
@@ -61,6 +61,7 @@ const useAuthStore = create<AuthState>((set) =>({
     if (error) return Promise.reject(error);
     set({session: data.session}) 
 
+    // return Promise.resolve(data.session) ;
     return Promise.resolve(data.user);
   },
   
