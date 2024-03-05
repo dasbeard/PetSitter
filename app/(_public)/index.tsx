@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { Link, router } from 'expo-router'
 import { Text } from '@/components/Themed'
 import useAuthStore from '@/hooks/Auth'
-import { AuthError } from '@supabase/supabase-js'
 import { FontAwesome } from '@expo/vector-icons'
-import BasicButton from '@/components/Buttons/BasicButton'
 import Spacer from '@/components/Spacer'
+import ActiveButton from '@/components/Buttons/ActiveButton'
 
 const Login = () => {
   const [ email, setEmail ] = useState<string>('test@test.com')
@@ -71,7 +70,13 @@ const Login = () => {
 
       <Spacer size={3} />
 
-      <BasicButton disabled={loading} text='Login' passedFunction={handleSignIn} />
+      <ActiveButton 
+        Disabled={loading} 
+        TextValue='Login' 
+        Function={handleSignIn} 
+        ButtonWidth={120} 
+        BoldText={true}  
+      />
 
       <Spacer size={2} />
 

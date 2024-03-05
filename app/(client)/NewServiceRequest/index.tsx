@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 import { View } from "@/components/Themed"
 
 import useCreateEventStore from "@/hooks/CreateEvent";
-import SelectionButton from "@/components/Buttons/SelectionButton";
+import ServiceSelectionButton from "@/components/Buttons/ServiceSelectionButton";
 
 export default function NewRequest() {
   const { setEventType } = useCreateEventStore();
@@ -12,10 +12,10 @@ export default function NewRequest() {
   const serviceOptions= ['Dog Walk', 'Home Visit', 'Boarding' ]
   
   const handleServiceSelection = (service: string) => {
-    // setEventType(service)
-    // router.push('/(client)/NewServiceRequest/Details')
+    setEventType(service)
+    router.push('/(client)/NewServiceRequest/Details')
   
-    console.log('pressed');
+    // console.log('pressed');
     
   }
 
@@ -23,7 +23,7 @@ export default function NewRequest() {
     <View style={styles.container}>
       {serviceOptions.map((item, _idx) => (
         <View key={_idx} style={styles.serviceType}>
-          <SelectionButton service={item} onPress={() => handleServiceSelection(item)} />
+          <ServiceSelectionButton service={item} onPress={() => handleServiceSelection(item)} />
         </View>
       ))}
     </View>

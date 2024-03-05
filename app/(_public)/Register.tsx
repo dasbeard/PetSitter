@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Text } from '@/components/Themed'
 import { FontAwesome } from '@expo/vector-icons'
 import useAuthStore from '@/hooks/Auth'
-import BasicButton from '@/components/Buttons/BasicButton'
+import ActiveButton from '@/components/Buttons/ActiveButton'
 import Spacer from '@/components/Spacer'
 import { router } from 'expo-router'
 
@@ -90,8 +90,7 @@ const Register = () => {
 
       <Spacer size={3} />
 
-      <BasicButton disabled={loading} text='Create Account' passedFunction={handleSignUp} />
-
+      <ActiveButton Disabled={loading} TextValue='Create Account' Function={handleSignUp} ButtonWidth={120} />
     </View>
   )
 }

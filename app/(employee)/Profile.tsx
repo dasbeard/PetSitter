@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from '@/components/Themed';
-import BasicButton from '@/components/Buttons/BasicButton';
+import ActiveButton from '@/components/Buttons/ActiveButton';
 import useAuthStore from '@/hooks/Auth';
 
 export default function EmployeeProfile() {
@@ -12,7 +12,14 @@ export default function EmployeeProfile() {
       <Text style={styles.title}>(employee)/Profile</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-      <BasicButton text='Logout' bgColor='#e44646' txtColor='#222' passedFunction={logout} />
+      <ActiveButton 
+        TextValue='Logout' 
+        Background='#e44646' 
+        TextColor='#222' 
+        Function={logout} 
+        ButtonWidth={120} 
+        BoldText={true}  
+      />
 
     </View>
   );

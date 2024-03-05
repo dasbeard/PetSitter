@@ -1,14 +1,10 @@
 import { View, Text } from "@/components/Themed"
-import { Pressable, StyleSheet, Image } from "react-native"
+import { Pressable, StyleSheet, Image, Platform } from "react-native"
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { InteractiveStyles } from "@/constants/Styles";
 
-interface Img {
-  light: string;
-  dark: string;
-}
-
-export default function SelectionButton ( { service, onPress } :{service: string, onPress?: any } ) {
+export default function ServiceSelectionButton ( { service, onPress } :{service: string, onPress?: any } ) {
   const colorScheme = useColorScheme(); 
 
   const allImagesArray = [
@@ -64,15 +60,15 @@ export default function SelectionButton ( { service, onPress } :{service: string
   return (
     <Pressable onPress={onPress} >
       {({ pressed }) => (
-        <View style={styles(pressed, colorScheme!).container}>
+        <View style={[styles.container, InteractiveStyles(pressed, colorScheme!).Shadow, InteractiveStyles(pressed, colorScheme!).Border]}>
           <Image 
             source={ colorScheme === 'light' ? Icon?.light : Icon?.dark } 
-            style={styles().image}
+            style={styles.image}
           />
           
-          <View style={styles().textContainer}>
-            <Text style={styles().mainText}>{service}</Text>
-            <Text style={styles().secondaryText}>Here are some details about the service</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.mainText}>{service}</Text>
+            <Text style={styles.secondaryText}>Here are some details about the service</Text>
           </View>
 
         </View>
@@ -83,32 +79,27 @@ export default function SelectionButton ( { service, onPress } :{service: string
 
 
 
-const styles = ( pressed?: boolean, colorScheme?: string ) =>  StyleSheet.create({
+// const styles = ( pressed?: boolean, colorScheme?: string ) =>  StyleSheet.create({
+const styles = StyleSheet.create({
   container:{
     flexDirection: 'row',    
     borderWidth: 1,
     borderRadius: 8,
-    borderColor: colorScheme === 'light' ? 'rgba(0, 5, 17, 0.25)' : 'rgba(21, 16, 19, 0.92)',
     marginVertical: 2,
     padding: 12,
     alignItems: 'center',
-
-    opacity: pressed ? 0.5 : 1,
-    elevation: pressed ? 1 : 3,
-    shadowColor: colorScheme === 'light' ? '#111' : '#222328',
-    shadowOffset: {height: pressed ? 1.5 : 2.5, width: pressed ? 0.5 : 2},
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    alignContent: 'space-between',
   },
   image:{
     flex: 1,
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
     resizeMode: 'contain',
   },
   textContainer:{
-    flex: 3,
+    flex: Platform.OS === 'web' ? 5 : 2,
     backgroundColor: 'rgba(0,0,0,0)',
+    paddingHorizontal: 4,
   },
   mainText: {
     fontSize: 16,

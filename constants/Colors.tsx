@@ -1,5 +1,6 @@
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
+const nativeBlue ='#1f76f1'
 
 export default {
   light: {
@@ -12,6 +13,8 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
     headerColor: '#abb7c2',
+    button: '#2f95dc',
+    buttonActive: '#0f66a9',
   },
   dark: {
     text: '#fff',
@@ -23,12 +26,8 @@ export default {
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
-    // headerColor: '#010101',
     headerColor: '#030a0f',
-    
-    
-    // headerColor: 'rgba(28, 28, 30, 0.5)',
-
-    
+    button: '#1f6194',   
+    buttonActive: '#073457',   
   },
 };

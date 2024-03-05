@@ -1,4 +1,5 @@
 import { Text, View } from '@/components/Themed'
+import Colors from '@/constants/Colors'
 import React from 'react'
 import { Pressable, StyleSheet } from 'react-native'
 
@@ -22,8 +23,6 @@ const BasicButton = ({
     
   }
 
-    
-
   return (
     <Pressable 
       style={[ styles.container, ]}
@@ -34,7 +33,8 @@ const BasicButton = ({
           <Text
             style={[styles.text, 
               {
-               backgroundColor: bgColor ? bgColor : '#1f76f1', 
+              //  backgroundColor: bgColor ? bgColor : '#1f76f1', 
+               backgroundColor: bgColor ? bgColor : Colors.light.button, 
                color: txtColor ? txtColor : '#fff', 
                opacity: pressed ? 0.5 : 1}]
               }
