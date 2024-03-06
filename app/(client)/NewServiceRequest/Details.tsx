@@ -6,13 +6,17 @@ import { useColorScheme } from '@/components/useColorScheme';
 import ActiveButton from '@/components/Buttons/ActiveButton';
 
 import useCreateEventStore from '@/hooks/CreateEvent'
+import { Link, router } from 'expo-router';
+import DatePicker from '@/components/DatePicker';
 
-export default function DateAndDetails() {
+const  DateAndDetails = () => {
   const { eventType } = useCreateEventStore();
   const [ occurrence, setOccurrence ]= useState<string>('')
   const [ selectedDays, setSelectedDays ] = useState<string[]>([])
   const [ selectedTimes, setSelectedTimes ] = useState<string[]>([])
-  const [ datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
+  // const [ datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
+
+  const { DatePickerVisible, setDatePickerVisible } = useCreateEventStore();
 
   const colorScheme = useColorScheme()
 
@@ -99,90 +103,105 @@ export default function DateAndDetails() {
   //   hideDatePicker();
   // };
 
+  const showModal = () => {
+    // console.log('Click');
+    setDatePickerVisible();
+    // setDatePickerVisible(true)
+    // console.log(datePickerVisible);
+    
+    // router.navigate('/(client)/NewServiceRequest/DatePickerModal')
+  }
+
+
+
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>{eventType}</Text>
-      </View>
+    <>
+          {DatePickerVisible ? (
+        <DatePicker />
+      ) : null}
+      <View style={styles.container}>
 
-      <View style={styles.oftenContainer}>
-        <Text style={styles.subHeader}>How often do you need service?</Text>
-
-        <View style={styles.oftenButtons}>
-          <ActiveButton TextValue='Once' Selected={occurrence === 'Once'} Function={() => handleOccranceSelection('Once')} ButtonWidth={75} />
-          <ActiveButton TextValue='Weekly' Selected={occurrence === 'Weekly'} Function={() => handleOccranceSelection('Weekly')} ButtonWidth={75} />
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>{eventType}</Text>
         </View>
 
-      </View>
+        <View style={styles.oftenContainer}>
+          <Text style={styles.subHeader}>How often do you need service?</Text>
 
-      <View style={styles.weekSelectionContainer}>
-        <Text style={styles.subHeader}>Select the days you would like serivce.</Text>
-        <View style={styles.oftenButtons}>
-          { days.map((d, _idx) => (
+          <View style={styles.oftenButtons}>
+            <ActiveButton TextValue='Once' Selected={occurrence === 'Once'} Function={() => handleOccranceSelection('Once')} ButtonWidth={75} />
+            <ActiveButton TextValue='Weekly' Selected={occurrence === 'Weekly'} Function={() => handleOccranceSelection('Weekly')} ButtonWidth={75} />
+          </View>
+
+        </View>
+
+        <View style={styles.weekSelectionContainer}>
+          <Text style={styles.subHeader}>What days you would like serivce?</Text>
+          <View style={styles.oftenButtons}>
+            { days.map((d, _idx) => (
+              <ActiveButton 
+                key={_idx}
+                TextValue={d} 
+                Selected={selectedDays.includes(d)} 
+                Function={() => handleDaySelection(d)}  
+                ButtonWidth={ Platform.OS === 'web' ? 100 : 25}
+              />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.startDateContainer}>
+          <Text style={styles.subHeader}>When do you need serive to begin?</Text>
+
+          <View style={styles.oftenButtons}>
             <ActiveButton 
-              key={_idx}
-              TextValue={d} 
-              Selected={selectedDays.includes(d)} 
-              Function={() => handleDaySelection(d)}  
-              ButtonWidth={ Platform.OS === 'web' ? 100 : 25}
+              TextValue='12/12/2024'
+              ButtonWidth={100}
+              Function={showModal}
             />
-          ))}
+          </View>
+
+        </View>
+
+        <View style={styles.timeContainer}>
+          <Text style={styles.subHeader}>What time of day?</Text>
+
+          <View style={styles.timeButtons}>
+
+            <ActiveButton 
+              TextValue='Morning'
+              ButtonWidth={100}
+              Selected={selectedTimes.includes('Morning')} 
+              // Function={}
+              />
+            <ActiveButton 
+              TextValue='Afternoon'
+              ButtonWidth={100}
+              Selected={selectedTimes.includes('Afternoon')} 
+              // Function={}
+              />
+            <ActiveButton 
+              TextValue='Evening'
+              ButtonWidth={100}
+              Selected={selectedTimes.includes('Evening')} 
+              // Function={}
+              />
+          </View>
+          
+          <View style={styles.nextContainer}>
+            <ActiveButton 
+              TextValue='Next'
+              ButtonWidth={100}
+              Disabled={true}
+              // Function={}
+              />
+
+          </View>
+
         </View>
       </View>
-
-      <View style={styles.startDateContainer}>
-        <Text style={styles.subHeader}>Select the starting date.</Text>
-
-        <View style={styles.oftenButtons}>
-          <ActiveButton 
-            TextValue='12/12/2024'
-            ButtonWidth={100}
-            // Function={showDatePicker}
-          />
-        </View>
-
-      </View>
-
-      <View style={styles.timeContainer}>
-        <Text style={styles.subHeader}>Select the starting date.</Text>
-
-        <View style={styles.timeButtons}>
-
-          <ActiveButton 
-            TextValue='Morning'
-            ButtonWidth={100}
-            Selected={selectedTimes.includes('Morning')} 
-            // Function={}
-            />
-          <ActiveButton 
-            TextValue='Afternoon'
-            ButtonWidth={100}
-            Selected={selectedTimes.includes('Afternoon')} 
-            // Function={}
-            />
-          <ActiveButton 
-            TextValue='Evening'
-            ButtonWidth={100}
-            Selected={selectedTimes.includes('Evening')} 
-            // Function={}
-            />
-        </View>
-        
-        <View style={styles.nextContainer}>
-          <ActiveButton 
-            TextValue='Next'
-            ButtonWidth={100}
-            Disabled={true}
-            Selected={selectedTimes.includes('Evening')} 
-            // Function={}
-            />
-
-        </View>
-
-      </View>
-
-    </View>
+    </>
   )
 }
 
@@ -241,3 +260,7 @@ const styles = StyleSheet.create({
   },
 
 })
+
+
+
+export default DateAndDetails
