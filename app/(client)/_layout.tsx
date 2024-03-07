@@ -10,6 +10,12 @@ export default function ClientRootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="Profile" />
         <Stack.Screen name="CreateNewVisit" />
+        <Stack.Screen 
+          name="ModalTest2" 
+          options={{
+            presentation: 'modal',
+          }} 
+          />
       </Stack>
     </>
   )

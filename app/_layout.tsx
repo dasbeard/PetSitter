@@ -103,12 +103,12 @@ const Layout = () => {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack 
-          initialRouteName='/(_public)'
-          screenOptions={{
-            headerShown: false,
-          }}
-        />    
+      <Stack 
+        initialRouteName='/(_public)'
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </ThemeProvider>
   )
 }

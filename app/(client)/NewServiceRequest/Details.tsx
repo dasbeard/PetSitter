@@ -14,10 +14,6 @@ const  DateAndDetails = () => {
   const [ occurrence, setOccurrence ]= useState<string>('')
   const [ selectedDays, setSelectedDays ] = useState<string[]>([])
   const [ selectedTimes, setSelectedTimes ] = useState<string[]>([])
-  // const [ datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
-
-  const { DatePickerVisible, setDatePickerVisible } = useCreateEventStore();
-
   const colorScheme = useColorScheme()
 
   const days= Platform.OS === 'web' ? 
@@ -105,10 +101,12 @@ const  DateAndDetails = () => {
 
   const showModal = () => {
     // console.log('Click');
-    setDatePickerVisible();
+    // setDatePickerVisible();
     // setDatePickerVisible(true)
     // console.log(datePickerVisible);
     
+
+    router.navigate('/ModalTest2')
     // router.navigate('/(client)/NewServiceRequest/DatePickerModal')
   }
 
@@ -117,9 +115,9 @@ const  DateAndDetails = () => {
 
   return (
     <>
-          {DatePickerVisible ? (
+          {/* {DatePickerVisible ? (
         <DatePicker />
-      ) : null}
+      ) : null} */}
       <View style={styles.container}>
 
         <View style={styles.headerContainer}>
