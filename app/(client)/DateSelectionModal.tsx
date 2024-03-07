@@ -1,22 +1,15 @@
-import { StyleSheet, Pressable, Platform } from 'react-native'
 import React, { useState } from 'react'
+import { StyleSheet, Pressable, Platform } from 'react-native'
 import { router } from 'expo-router'
-
-// import { Calendar } from "react-native-calendars";
+import { View, Text } from '@/components/Themed';
 
 import DateTimePicker, { DateType} from 'react-native-ui-datepicker'
 import dayjs from 'dayjs'
 
-import useCreateEventStore from '@/hooks/CreateEvent'
-import { View, Text } from '@/components/Themed';
 import ActiveButton from '@/components/Buttons/ActiveButton'
 
 
-export default function ModalTest() {
-  // const { DatePickerVisible, setDatePickerVisible } = useCreateEventStore();
-
-  // const [date, setDate] = useState(dayjs());
-  // const [date, setDate] = useState();
+export default function DateSelectionModal() {
 
   const [date, setDate] = useState<DateType | undefined>();
   const [range, setRange] = useState<{

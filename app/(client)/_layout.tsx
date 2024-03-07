@@ -11,7 +11,7 @@ export default function ClientRootLayout() {
         <Stack.Screen name="Profile" />
         <Stack.Screen name="CreateNewVisit" />
         <Stack.Screen 
-          name="ModalTest2" 
+          name="DateSelectionModal" 
           options={{
             presentation: 'modal',
           }} 

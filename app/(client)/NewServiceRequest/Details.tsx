@@ -106,7 +106,7 @@ const  DateAndDetails = () => {
     // console.log(datePickerVisible);
     
 
-    router.navigate('/ModalTest2')
+    router.navigate('/DateSelectionModal')
     // router.navigate('/(client)/NewServiceRequest/DatePickerModal')
   }
 
